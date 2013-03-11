@@ -6,7 +6,7 @@
     <!-- Project identification -->
     <groupId>org.code-house</groupId>
     <artifactId>parent</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.1-SNAPSHOT</version>
 
     <name>Code-House :: Parent</name>
     <packaging>pom</packaging>
@@ -42,7 +42,7 @@
         <connection>scm:git:http://git.code-house.org/scm/CH/parent.git</connection>
         <developerConnection>scm:git:ssh://git.code-house.org/CH/parent.git</developerConnection>
         <url>http://git.code-house.org/projects/CH/repos/parent</url>
-      <tag>v1.5.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <!-- properties -->
