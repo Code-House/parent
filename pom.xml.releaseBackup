@@ -46,7 +46,6 @@
 
     <!-- properties -->
     <properties>
-        <code-house.plugin.buildhelper.version>1.7</code-house.plugin.buildhelper.version>
         <code-house.plugin.checkstyle.version>2.9.1</code-house.plugin.checkstyle.version>
         <code-house.plugin.cobertura.version>2.5.2</code-house.plugin.cobertura.version>
         <code-house.plugin.compiler.version>3.0</code-house.plugin.compiler.version>
@@ -58,7 +57,6 @@
         <code-house.plugin.site.version>3.2</code-house.plugin.site.version>
         <code-house.plugin.source.version>2.2.1</code-house.plugin.source.version>
         <code-house.plugin.pmd.version>3.0</code-house.plugin.pmd.version>
-        <code-house.plugin.release.version>2.4</code-house.plugin.release.version>
 
         <!-- Compilation -->
         <code-house.compiler.source>1.5</code-house.compiler.source>
@@ -219,16 +217,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>${code-house.plugin.checkstyle.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${code-house.plugin.release.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>${code-house.plugin.buildhelper.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
