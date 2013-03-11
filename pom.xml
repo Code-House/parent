@@ -147,14 +147,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <configLocation>code-house/checkstyle.xml</configLocation>
                     <failsOnError>false</failsOnError>
@@ -189,7 +181,7 @@
                         </file>
                         <file>
                             <name>.settings/checkstyle.xml</name>
-                            <url>http://repository.code-house.org/content/repositories/code-house.public.release/org/code-house/checkstyle/${project.version}/checkstyle-${project.version}.xml</url>
+                            <location>/code-house/checkstyle.xml</location>
                         </file>
                     </additionalConfig>
                 </configuration>
