@@ -51,6 +51,7 @@
         <code-house.plugin.checkstyle.version>2.9.1</code-house.plugin.checkstyle.version>
         <code-house.plugin.cobertura.version>2.5.2</code-house.plugin.cobertura.version>
         <code-house.plugin.compiler.version>3.0</code-house.plugin.compiler.version>
+        <code-house.plugin.deploy.version>2.7</code-house.plugin.deploy.version>
         <code-house.plugin.eclipse.version>2.9</code-house.plugin.eclipse.version>
         <code-house.plugin.findbugs.version>2.5.2</code-house.plugin.findbugs.version>
         <code-house.plugin.javadoc.version>2.9</code-house.plugin.javadoc.version>
@@ -216,6 +217,16 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${code-house.plugin.resources.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${code-house.plugin.javadoc.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${code-house.plugin.deploy.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
