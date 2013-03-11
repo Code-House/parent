@@ -13,6 +13,7 @@
     <artifactId>checkstyle</artifactId>
 
     <name>Code-House :: Checkstyle</name>
+    <packaging>pom</packaging>
 
     <build>
         <plugins>
