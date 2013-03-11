@@ -39,9 +39,9 @@
     </ciManagement>
 
     <scm>
-        <connection>scm:git:git://git.code-house.org/CH/parent.git</connection>
-        <developerConnection>scm:git:git://git.code-house.org/CH/parent.git</developerConnection>
-        <url>http://git.code-house.org/</url>
+        <connection>scm:git:http://git.code-house.org/scm/CH/parent.git</connection>
+        <developerConnection>scm:git:ssh://git.code-house.org/CH/parent.git</developerConnection>
+        <url>http://git.code-house.org/projects/CH/repos/parent</url>
     </scm>
 
     <!-- properties -->
