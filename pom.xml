@@ -1,0 +1,412 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <!-- Maven model version - the version 4.0.0 is reserver for Maven 2.x -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Project identification -->
+    <groupId>org.code-house</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.4.0-SNAPSHOT</version>
+
+    <name>Code-House :: Parent</name>
+    <packaging>pom</packaging>
+
+    <!-- Informations about project -->
+    <description>The Code-House company base POM.</description>
+
+    <modules>
+        <module>checkstyle</module>
+    </modules>
+
+    <url>http://code-house.org</url>
+
+    <inceptionYear>2008</inceptionYear>
+
+    <!-- Issue tracker -->
+    <issueManagement>
+        <system>JIRA</system>
+        <url>http://issues.code-house.org/</url>
+    </issueManagement>
+
+    <organization>
+        <name>Code-House</name>
+        <url>http://code-house.org</url>
+    </organization>
+
+    <ciManagement>
+        <system>bamboo</system>
+        <url>http://ci.code-house.org</url>
+    </ciManagement>
+
+    <scm>
+        <connection>scm:git:http://git.code-house.org/scm/CH/parent.git</connection>
+        <developerConnection>scm:git:git://git.code-house.org:7999/CH/parent.git</developerConnection>
+        <url>http://git.code-house.org/</url>
+    </scm>
+
+    <!-- properties -->
+    <properties>
+        <code-house.plugin.checkstyle.version>2.9.1</code-house.plugin.checkstyle.version>
+        <code-house.plugin.cobertura.version>2.5.2</code-house.plugin.cobertura.version>
+        <code-house.plugin.compiler.version>3.0</code-house.plugin.compiler.version>
+        <code-house.plugin.eclipse.version>2.9</code-house.plugin.eclipse.version>
+        <code-house.plugin.findbugs.version>2.5.2</code-house.plugin.findbugs.version>
+        <code-house.plugin.javadoc.version>2.9</code-house.plugin.javadoc.version>
+        <code-house.plugin.jxr.version>2.3</code-house.plugin.jxr.version>
+        <code-house.plugin.resources.version>2.6</code-house.plugin.resources.version>
+        <code-house.plugin.site.version>3.2</code-house.plugin.site.version>
+        <code-house.plugin.source.version>2.2.1</code-house.plugin.source.version>
+        <code-house.plugin.pmd.version>3.0</code-house.plugin.pmd.version>
+
+        <!-- Compilation -->
+        <code-house.compiler.source>1.5</code-house.compiler.source>
+        <code-house.compiler.target>1.5</code-house.compiler.target>
+
+        <!-- Build and raporting plugin properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <code-house.fluido.skin.version>1.3.0</code-house.fluido.skin.version>
+    </properties>
+
+    <!-- Repositories -->
+    <distributionManagement>
+        <repository>
+            <id>code-house.public.release</id>
+            <url>http://repository.code-house.org/content/repositories/code-house.public.release/</url>
+            <name>Code-House Public Releases</name>
+        </repository>
+        <snapshotRepository>
+            <id>code-house.public.snapshot</id>
+            <url>http://repository.code-house.org/content/repositories/code-house.public.snapshot/</url>
+            <name>Code-House Public Snapshots</name>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${code-house.plugin.compiler.version}</version>
+                <configuration>
+                    <source>${code-house.compiler.source}</source>
+                    <target>${code-house.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${code-house.plugin.source.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                        <configuration>
+                            <includePom>true</includePom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${code-house.plugin.site.version}</version>
+                <configuration>
+                    <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+                    <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${code-house.plugin.cobertura.version}</version>
+                <!--
+                <executions>
+                    <execution>
+                        <id>clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>instrument</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>cobertura</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                -->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configLocation>code-house/checkstyle.xml</configLocation>
+                    <failsOnError>false</failsOnError>
+                    <failOnViolation>false</failOnViolation>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.code-house</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!-- Maven to eclipse -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <configuration>
+                    <buildOutputDirectory>target/classes</buildOutputDirectory>
+                    <projectNameTemplate>[groupId].[artifactId]</projectNameTemplate>
+<!--
+                    <additionalProjectnatures>
+                        <projectNature>net.sf.eclipsecs.core.CheckstyleNature</projectNature>
+                    </additionalProjectnatures>
+                    <additionalBuildcommands>
+                        <buildcommand>net.sf.eclipsecs.core.CheckstyleBuilder</buildcommand>
+                    </additionalBuildcommands>
+                    <additionalConfig>
+                        <file>
+                            <name>.checkstyle</name>
+                            <content><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<fileset-config file-format-version="1.2.0" simple-config="true">
+    <local-check-config name="Code-House Checks" location="${basedir}/.settings/checkstyle.xml" type="external" description="">
+        <additional-data name="cache-file" value="false"/>
+    </local-check-config>
+    <fileset name="all" enabled="true" check-config-name="Code-House Checks" local="true">
+        <file-match-pattern match-pattern="." include-pattern="true"/>
+    </fileset>
+    <filter name="NonSrcDirs" enabled="true"/>
+</fileset-config>
+                               ]]>
+                            </content>
+                        </file>
+                        <file>
+                            <name>.settings/checkstyle.xml</name>
+                            <url>http://repository.code-house.org/content/repositories/code-house.public.release/org/code-house/checkstyle/1.0.0/checkstyle-1.0.0.xml</url>
+                        </file>
+                    </additionalConfig>
+-->
+                </configuration>
+<!--
+                <dependencies>
+                    <dependency>
+                        <groupId>org.code-house</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>1.0.0</version>
+                        <type>xml</type>
+                    </dependency>
+                </dependencies>
+-->
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <version>${code-house.plugin.eclipse.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${code-house.plugin.resources.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${code-house.plugin.checkstyle.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${code-house.plugin.javadoc.version}</version>
+                <configuration>
+                    <stylesheetfile>javadoc-${division}.css</stylesheetfile>
+                    <docencoding>${project.build.sourceEncoding}</docencoding>
+                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+                    <docletArtifact>
+                        <groupId>org.umlgraph</groupId>
+                        <artifactId>doclet</artifactId>
+                        <version>5.6</version>
+                    </docletArtifact>
+                    <resourcesArtifacts>
+                        <resourceArtifact>
+                            <groupId>org.code-house.skin</groupId>
+                            <artifactId>resources</artifactId>
+                            <version>${code-house.site-skin.version}</version>
+                        </resourceArtifact>
+                    </resourcesArtifacts>
+                    <additionalparam>-views</additionalparam>
+                    <useStandardDocletOptions>true</useStandardDocletOptions>
+                    <detectLinks>true</detectLinks>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>${code-house.plugin.jxr.version}</version>
+                <configuration>
+                    <linkJavadoc>true</linkJavadoc>
+                    <!-- Links with modules -->
+                    <aggregate>true</aggregate>
+                    <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+                    <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${code-house.plugin.cobertura.version}</version>
+                <configuration>
+                    <formats>
+                        <format>xml</format>
+                        <format>html</format>
+                    </formats>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${code-house.plugin.checkstyle.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${code-house.plugin.pmd.version}</version>
+                <configuration>
+                    <format>xml</format>
+                    <targetJdk>${code-house.compiler.target}</targetJdk>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${code-house.plugin.findbugs.version}</version>
+                <configuration>
+                    <xmlOutput>true</xmlOutput>
+                    <xmlOutputDirectory>target/</xmlOutputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <repositories>
+        <repository>
+            <id>code-house.snapshot</id>
+            <name>Code-House Snapshot Repository</name>
+            <url>http://repository.code-house.org/content/groups/snapshot/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>code-house.release</id>
+            <name>Code-House Release Repository</name>
+            <url>http://repository.code-house.org/content/groups/release/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>code-house.internal.release</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>http://repository.code-house.org/content/repositories/code-house.internal.release</url>
+        </repository>
+
+        <repository>
+            <id>code-house.internal.snapshot</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>http://repository.code-house.org/content/repositories/code-house.internal.snapshot</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>code-house.snapshot</id>
+            <name>Code-House Snapshot Repository</name>
+            <url>http://repository.code-house.org/content/groups/snapshot/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+
+        <pluginRepository>
+            <id>code-house.release</id>
+            <name>Code-House Release Repository</name>
+            <url>http://repository.code-house.org/content/groups/release/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+
+        <pluginRepository>
+            <id>code-house.internal.release</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>http://repository.code-house.org/content/repositories/code-house.internal.release</url>
+        </pluginRepository>
+
+        <pluginRepository>
+            <id>code-house.internal.snapshot</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>http://repository.code-house.org/content/repositories/code-house.internal.snapshot</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
