@@ -18,6 +18,7 @@
     "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
     "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
+    <property name="basedir" value="${project_loc}/.settings" />
     <property name="severity" value="warning" />
     <property name="charset" value="UTF-8" />
 
@@ -38,8 +39,13 @@
      <!-- <module name="RegexpHeader"/>                                -->
      <module name="RegexpHeader">
         <property name="severity" value="error" />
-        <property name="fileExtensions" value="java,properties" />
-        <property name="headerFile" value="${checkstyle.header.file}" />
+        <property name="fileExtensions" value="java,properties,aj,scala,js,css" />
+        <property name="headerFile" value="${project_loc}/.settings/header" />
+     </module>
+     <module name="RegexpHeader">
+        <property name="severity" value="error" />
+        <property name="fileExtensions" value="html,xml,xsd,wsdl" />
+        <property name="headerFile" value="${project_loc}/.settings/header-xml" />
      </module>
 
      <!-- Checks for Size Violations.                    -->

@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright (C) 2013 Code-House, Lukasz Dywicki.
+ -
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
 <fileset-config file-format-version="1.2.0" simple-config="true">
-    <local-check-config name="Code-House Checks" location=".settings/checkstyle.xml" type="local" description="Checkstyle settings delivered by Maven eclipse plugin">
+    <local-check-config name="Code-House Checks" location=".settings/checkstyle.xml" type="project" description="Code-House Checkstyle configuration">
         <additional-data name="cache-file" value="false"/>
+        <property name="checkstyle.header.file" value=".settings/header"/>
     </local-check-config>
     <fileset name="all" enabled="true" check-config-name="Code-House Checks" local="true">
         <file-match-pattern match-pattern="." include-pattern="true"/>
     </fileset>
-    <filter name="NonSrcDirs" enabled="true"/>
+    <filter name="FileTypesFilter" enabled="true">
+        <filter-data value="java"/>
+        <filter-data value="scala"/>
+        <filter-data value="aj"/>
+        <filter-data value="properties"/>
+        <filter-data value="css"/>
+        <filter-data value="xml"/>
+        <filter-data value="html"/>
+        <filter-data value="xsd"/>
+        <filter-data value="wsdl"/>
+    </filter>
 </fileset-config>

@@ -1,3 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ - Copyright (C) 2013 Code-House, Lukasz Dywicki.
+ -
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -
+ -     http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <!-- Maven model version - the version 4.0.0 is reserver for Maven 2.x -->
@@ -34,16 +50,24 @@
     </organization>
 
     <ciManagement>
-        <system>bamboo</system>
+        <system>Bamboo</system>
         <url>http://ci.code-house.org</url>
     </ciManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <scm>
         <connection>scm:git:http://git.code-house.org/scm/CH/parent.git</connection>
         <developerConnection>scm:git:ssh://git.code-house.org/CH/parent.git</developerConnection>
         <url>http://git.code-house.org/projects/CH/repos/parent</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+   </scm>
 
     <!-- properties -->
     <properties>
@@ -56,11 +80,11 @@
         <code-house.plugin.findbugs.version>2.5.2</code-house.plugin.findbugs.version>
         <code-house.plugin.javadoc.version>2.9</code-house.plugin.javadoc.version>
         <code-house.plugin.jxr.version>2.3</code-house.plugin.jxr.version>
+        <code-house.plugin.pmd.version>3.0</code-house.plugin.pmd.version>
+        <code-house.plugin.release.version>2.4</code-house.plugin.release.version>
         <code-house.plugin.resources.version>2.6</code-house.plugin.resources.version>
         <code-house.plugin.site.version>3.2</code-house.plugin.site.version>
         <code-house.plugin.source.version>2.2.1</code-house.plugin.source.version>
-        <code-house.plugin.pmd.version>3.0</code-house.plugin.pmd.version>
-        <code-house.plugin.release.version>2.4</code-house.plugin.release.version>
 
         <!-- Compilation -->
         <code-house.compiler.source>1.5</code-house.compiler.source>
@@ -68,8 +92,10 @@
 
         <!-- Build and raporting plugin properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <code-house.fluido.skin.version>1.3.0</code-house.fluido.skin.version>
-        <code-house.plugin.project-info.version>2.6</code-house.plugin.project-info.version>
+        <code-house.report.umlhraph.version>5.6</code-house.report.umlhraph.version>
+        <code-house.report.project-info.version>2.6</code-house.report.project-info.version>
     </properties>
 
     <!-- Repositories -->
@@ -145,12 +171,19 @@
                     </execution>
                 </executions>
                 -->
+                <configuration>
+                    <formats>
+                        <format>xml</format>
+                        <format>html</format>
+                    </formats>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <configuration>
                     <configLocation>code-house/checkstyle.xml</configLocation>
+                    <headerLocation>code-house/header</headerLocation>
                     <failsOnError>false</failsOnError>
                     <failOnViolation>false</failOnViolation>
                 </configuration>
@@ -183,7 +216,15 @@
                         </file>
                         <file>
                             <name>.settings/checkstyle.xml</name>
-                            <location>/code-house/checkstyle.xml</location>
+                            <location>/code-house/checkstyle-eclipse.xml</location>
+                        </file>
+                        <file>
+                            <name>.settings/header</name>
+                            <location>/code-house/header</location>
+                        </file>
+                        <file>
+                            <name>.settings/header-xml</name>
+                            <location>/code-house/header-xml</location>
                         </file>
                     </additionalConfig>
                 </configuration>
@@ -243,11 +284,6 @@
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>${code-house.plugin.buildhelper.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>${code-house.plugin.release.version}</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -259,21 +295,13 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${code-house.plugin.javadoc.version}</version>
                 <configuration>
-                    <stylesheetfile>javadoc-${division}.css</stylesheetfile>
                     <docencoding>${project.build.sourceEncoding}</docencoding>
                     <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
                     <docletArtifact>
                         <groupId>org.umlgraph</groupId>
-                        <artifactId>doclet</artifactId>
-                        <version>5.6</version>
+                        <artifactId>umlgraph</artifactId>
+                        <version>${code-house.report.umlhraph.version}</version>
                     </docletArtifact>
-                    <resourcesArtifacts>
-                        <resourceArtifact>
-                            <groupId>org.code-house.skin</groupId>
-                            <artifactId>resources</artifactId>
-                            <version>${code-house.site-skin.version}</version>
-                        </resourceArtifact>
-                    </resourcesArtifacts>
                     <additionalparam>-views</additionalparam>
                     <useStandardDocletOptions>true</useStandardDocletOptions>
                     <detectLinks>true</detectLinks>
@@ -292,22 +320,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>${code-house.plugin.cobertura.version}</version>
-                <configuration>
-                    <formats>
-                        <format>xml</format>
-                        <format>html</format>
-                    </formats>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${code-house.plugin.checkstyle.version}</version>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>${code-house.plugin.pmd.version}</version>
@@ -324,6 +336,11 @@
                     <xmlOutput>true</xmlOutput>
                     <xmlOutputDirectory>target/</xmlOutputDirectory>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${code-house.report.project-info.version}</version>
             </plugin>
         </plugins>
     </reporting>
