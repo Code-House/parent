@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.code-house</groupId>
         <artifactId>parent</artifactId>
-        <version>1.5.2-SNAPSHOT</version>
+        <version>1.5.2</version>
     </parent>
 
     <groupId>org.code-house</groupId>
