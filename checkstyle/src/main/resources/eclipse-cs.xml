@@ -33,4 +33,5 @@
         <filter-data value="xsd"/>
         <filter-data value="wsdl"/>
     </filter>
+    <filter name="NonSrcDirs" enabled="true"/>
 </fileset-config>

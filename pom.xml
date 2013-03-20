@@ -71,6 +71,13 @@
 
     <!-- properties -->
     <properties>
+        <code-house.easymock.version>3.1</code-house.easymock.version>
+        <code-house.fest.version>1.4</code-house.fest.version>
+        <code-house.junit.version>4.11</code-house.junit.version>
+        <code-house.perf4j.version>0.9.16</code-house.perf4j.version>
+        <code-house.slf4j.version>1.7.2</code-house.slf4j.version>
+
+        <!-- Maven plugins -->
         <code-house.plugin.buildhelper.version>1.7</code-house.plugin.buildhelper.version>
         <code-house.plugin.checkstyle.version>2.9.1</code-house.plugin.checkstyle.version>
         <code-house.plugin.cobertura.version>2.5.2</code-house.plugin.cobertura.version>
@@ -345,100 +352,50 @@
         </plugins>
     </reporting>
 
-    <repositories>
-        <repository>
-            <id>code-house.snapshot</id>
-            <name>Code-House Snapshot Repository</name>
-            <url>http://repository.code-house.org/content/groups/snapshot/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${code-house.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-nop</artifactId>
+                <version>${code-house.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${code-house.slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${code-house.slf4j.version}</version>
+            </dependency>
 
-        <repository>
-            <id>code-house.release</id>
-            <name>Code-House Release Repository</name>
-            <url>http://repository.code-house.org/content/groups/release/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>code-house.internal.release</id>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <url>http://repository.code-house.org/content/repositories/code-house.internal.release</url>
-        </repository>
-
-        <repository>
-            <id>code-house.internal.snapshot</id>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <url>http://repository.code-house.org/content/repositories/code-house.internal.snapshot</url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>code-house.snapshot</id>
-            <name>Code-House Snapshot Repository</name>
-            <url>http://repository.code-house.org/content/groups/snapshot/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-
-        <pluginRepository>
-            <id>code-house.release</id>
-            <name>Code-House Release Repository</name>
-            <url>http://repository.code-house.org/content/groups/release/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-
-        <pluginRepository>
-            <id>code-house.internal.release</id>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <url>http://repository.code-house.org/content/repositories/code-house.internal.release</url>
-        </pluginRepository>
-
-        <pluginRepository>
-            <id>code-house.internal.snapshot</id>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <url>http://repository.code-house.org/content/repositories/code-house.internal.snapshot</url>
-        </pluginRepository>
-    </pluginRepositories>
+            <dependency>
+                <groupId>org.easymock</groupId>
+                <artifactId>easymock</artifactId>
+                <version>${code-house.easymock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${code-house.junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.easytesting</groupId>
+                <artifactId>fest-assert</artifactId>
+                <version>${code-house.fest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.perf4j</groupId>
+                <artifactId>perf4j</artifactId>
+                <version>${code-house.perf4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

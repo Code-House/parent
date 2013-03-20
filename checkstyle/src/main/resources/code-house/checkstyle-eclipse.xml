@@ -56,13 +56,19 @@
         <property name="severity" value="warning" />
     </module>
 
+    <module name="FileTabCharacterCheck">
+        <property name="severity" value="warning" />
+    </module>
+
     <!-- Checks that a package.html file exists for each package.     -->
     <!-- See http://checkstyle.sf.net/config_javadoc.html#PackageHtml -->
     <!-- <module name="PackageHtml"/>  -->
 
     <!-- Checks whether files end with a new line.                        -->
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
-    <module name="NewlineAtEndOfFile" />
+    <module name="NewlineAtEndOfFile">
+        <property name="severity" value="info" />
+    </module>
 
     <!-- Checks that property files contain the same keys.         -->
     <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
@@ -89,7 +95,9 @@
         <module name="LocalFinalVariableName" />
         <module name="LocalVariableName" />
         <module name="MemberName" />
-        <module name="MethodName" />
+        <module name="MethodName">
+            <property name="format" value="^(?:test_[a-z][a-z0-9_]+|[^test][a-z][a-zA-Z0-9]*[^A-Z])$"/>
+        </module>
         <module name="PackageName" />
         <module name="ParameterName" />
         <module name="StaticVariableName" />
@@ -106,27 +114,20 @@
             <property name="max" value="160" />
         </module>
 
+        <module name="AnnotationUseStyle" />
         <module name="MethodLength" />
         <module name="ParameterNumber" />
         <!-- Checks for whitespace                               -->
         <!-- See http://checkstyle.sf.net/config_whitespace.html -->
         <module name="EmptyForIteratorPad" />
         <module name="MethodParamPad" />
-        <module name="NoWhitespaceAfter">
-            <property name="tokens"
-                value="BNOT,DEC,DOT,INC,LNOT,UNARY_MINUS,UNARY_PLUS,GENERIC_END" />
-        </module>
-        <module name="NoWhitespaceBefore">
-            <property name="tokens" value="GENERIC_START" />
-        </module>
+        <module name="NoWhitespaceAfter" />
+        <module name="NoWhitespaceBefore" />
         <module name="OperatorWrap" />
         <module name="ParenPad" />
         <module name="TypecastParenPad" />
         <module name="WhitespaceAfter" />
-        <module name="WhitespaceAround">
-            <property name="tokens"
-                value="ASSIGN,BAND,BAND_ASSIGN,BOR,BOR_ASSIGN,BSR,BSR_ASSIGN,BXOR,BXOR_ASSIGN,COLON,DIV,DIV_ASSIGN,EQUAL,GE,GT,LAND,LCURLY,LE,LITERAL_ASSERT,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE,LOR,LT,MINUS,MINUS_ASSIGN,MOD,MOD_ASSIGN,NOT_EQUAL,PLUS,PLUS_ASSIGN,QUESTION,RCURLY,SL,SLIST,SL_ASSIGN,SR,SR_ASSIGN,STAR,STAR_ASSIGN,LITERAL_ASSERT,TYPE_EXTENSION_AND,WILDCARD_TYPE" />
-        </module>
+        <module name="WhitespaceAround" />
         <!-- Modifier Checks                                    -->
         <!-- See http://checkstyle.sf.net/config_modifiers.html -->
         <module name="ModifierOrder" />
@@ -140,15 +141,18 @@
         <module name="RightCurly" />
         <!-- Checks for common coding problems               -->
         <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <!-- Operator ? : jest dozwolony -->
         <!-- <module name="AvoidInlineConditionals" />  -->
         <module name="DoubleCheckedLocking" /><!-- MY FAVOURITE -->
         <module name="EmptyStatement" />
         <module name="EqualsHashCode" />
-        <module name="HiddenField" />
+        <module name="HiddenField">
+            <property name="severity" value="info"/>
+        </module>
         <module name="IllegalInstantiation" />
         <module name="InnerAssignment" />
-        <module name="MagicNumber" />
+        <module name="MagicNumber">
+            <property name="severity" value="info"/>
+        </module>
         <module name="MissingSwitchDefault" />
         <module name="RedundantThrows">
             <property name="logLoadErrors" value="true" />
@@ -158,15 +162,29 @@
         <module name="SimplifyBooleanReturn" />
         <!-- Checks for class design                         -->
         <!-- See http://checkstyle.sf.net/config_design.html -->
-        <module name="DesignForExtension" />
-        <module name="FinalClass" />
-        <module name="HideUtilityClassConstructor" />
-        <module name="InterfaceIsType" />
-        <module name="VisibilityModifier" />
+
+        <!-- We know what we do -->
+        <module name="DesignForExtension">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="FinalClass">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="HideUtilityClassConstructor">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="InterfaceIsType">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="VisibilityModifier">
+            <property name="severity" value="info"/>
+        </module>
         <!-- Miscellaneous other checks.                   -->
         <!-- See http://checkstyle.sf.net/config_misc.html -->
         <module name="ArrayTypeStyle" />
-        <module name="FinalParameters" />
+        <module name="FinalParameters">
+            <property name="severity" value="info"/>
+        </module>
         <module name="TodoComment">
             <property name="severity" value="ignore" />
         </module>
