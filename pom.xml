@@ -22,7 +22,7 @@
     <!-- Project identification -->
     <groupId>org.code-house</groupId>
     <artifactId>parent</artifactId>
-    <version>1.6.0-SNAPSHOT</version>
+    <version>2-SNAPSHOT</version>
 
     <name>Code-House :: Parent</name>
     <packaging>pom</packaging>
@@ -71,38 +71,43 @@
 
     <!-- properties -->
     <properties>
-        <code-house.easymock.version>3.1</code-house.easymock.version>
-        <code-house.fest.version>1.4</code-house.fest.version>
-        <code-house.junit.version>4.11</code-house.junit.version>
-        <code-house.perf4j.version>0.9.16</code-house.perf4j.version>
-        <code-house.slf4j.version>1.7.2</code-house.slf4j.version>
+        <assertj-core.version>1.5.0</assertj-core.version>
+        <assertj-guava.version>1.1.0</assertj-guava.version>
+
+        <mockito.version>1.9.5</mockito.version>
+        <junit.version>4.11</junit.version>
+        <perf4j.version>0.9.16</perf4j.version>
+        <slf4j.version>1.7.2</slf4j.version>
 
         <!-- Maven plugins -->
-        <code-house.plugin.buildhelper.version>1.7</code-house.plugin.buildhelper.version>
-        <code-house.plugin.checkstyle.version>2.9.1</code-house.plugin.checkstyle.version>
-        <code-house.plugin.cobertura.version>2.5.2</code-house.plugin.cobertura.version>
-        <code-house.plugin.compiler.version>3.0</code-house.plugin.compiler.version>
-        <code-house.plugin.deploy.version>2.7</code-house.plugin.deploy.version>
-        <code-house.plugin.eclipse.version>2.9</code-house.plugin.eclipse.version>
-        <code-house.plugin.findbugs.version>2.5.2</code-house.plugin.findbugs.version>
-        <code-house.plugin.javadoc.version>2.9</code-house.plugin.javadoc.version>
-        <code-house.plugin.jxr.version>2.3</code-house.plugin.jxr.version>
-        <code-house.plugin.pmd.version>3.0</code-house.plugin.pmd.version>
-        <code-house.plugin.release.version>2.4</code-house.plugin.release.version>
-        <code-house.plugin.resources.version>2.6</code-house.plugin.resources.version>
-        <code-house.plugin.site.version>3.2</code-house.plugin.site.version>
-        <code-house.plugin.source.version>2.2.1</code-house.plugin.source.version>
+        <codehaus-buildhelper-plugin.version>1.7</codehaus-buildhelper-plugin.version>
+        <codehaus-cobertura-plugin.version>2.5.2</codehaus-cobertura-plugin.version>
+
+        <felix-bundle-plugin.version>2.3.7</felix-bundle-plugin.version>
+
+        <maven-checkstyle-plugin.version>2.9.1</maven-checkstyle-plugin.version>
+        <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
+        <maven-eclipse-plugin.version>2.9</maven-eclipse-plugin.version>
+        <maven-findbugs-plugin.version>2.5.2</maven-findbugs-plugin.version>
+        <maven-javadoc-plugin.version>2.9</maven-javadoc-plugin.version>
+        <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
+        <maven-pmd-plugin.version>3.0</maven-pmd-plugin.version>
+        <maven-release-plugin.version>2.4</maven-release-plugin.version>
+        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+        <maven-site-plugin.version>3.2</maven-site-plugin.version>
+        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
 
         <!-- Compilation -->
-        <code-house.compiler.source>1.5</code-house.compiler.source>
-        <code-house.compiler.target>1.5</code-house.compiler.target>
+        <compiler.source>1.5</compiler.source>
+        <compiler.target>1.5</compiler.target>
 
         <!-- Build and raporting plugin properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <code-house.fluido.skin.version>1.3.0</code-house.fluido.skin.version>
-        <code-house.report.umlhraph.version>5.6</code-house.report.umlhraph.version>
-        <code-house.report.project-info.version>2.6</code-house.report.project-info.version>
+        <umlhraph.version>5.6</umlhraph.version>
+        <fluido-skin.version>1.3.0</fluido-skin.version>
+        <project-report-info.version>2.6</project-report-info.version>
     </properties>
 
     <!-- Repositories -->
@@ -124,16 +129,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${code-house.plugin.compiler.version}</version>
                 <configuration>
-                    <source>${code-house.compiler.source}</source>
-                    <target>${code-house.compiler.target}</target>
+                    <source>${compiler.source}</source>
+                    <target>${compiler.target}</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${code-house.plugin.source.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -150,7 +153,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>${code-house.plugin.site.version}</version>
                 <configuration>
                     <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
                     <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
@@ -159,8 +161,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
-                <version>${code-house.plugin.cobertura.version}</version>
-                <!--
                 <executions>
                     <execution>
                         <id>clean</id>
@@ -177,7 +177,6 @@
                         </goals>
                     </execution>
                 </executions>
-                -->
                 <configuration>
                     <formats>
                         <format>xml</format>
@@ -198,7 +197,7 @@
                     <dependency>
                         <groupId>org.code-house</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>1.6.0-SNAPSHOT</version>
+                        <version>2-SNAPSHOT</version>
                         <optional>true</optional>
                     </dependency>
                 </dependencies>
@@ -257,39 +256,64 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>cobertura-maven-plugin</artifactId>
+                    <version>${codehaus-cobertura-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${felix-bundle-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-eclipse-plugin</artifactId>
-                    <version>${code-house.plugin.eclipse.version}</version>
+                    <version>${maven-eclipse-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>${code-house.plugin.resources.version}</version>
+                    <version>${maven-resources-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${code-house.plugin.javadoc.version}</version>
+                    <version>${maven-javadoc-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
-                    <version>${code-house.plugin.deploy.version}</version>
+                    <version>${maven-deploy-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${code-house.plugin.checkstyle.version}</version>
+                    <version>${maven-checkstyle-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>${code-house.plugin.release.version}</version>
+                    <version>${maven-release-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>${code-house.plugin.buildhelper.version}</version>
+                    <version>${codehaus-buildhelper-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -300,14 +324,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${code-house.plugin.javadoc.version}</version>
+                <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
                     <docencoding>${project.build.sourceEncoding}</docencoding>
                     <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
                     <docletArtifact>
                         <groupId>org.umlgraph</groupId>
                         <artifactId>umlgraph</artifactId>
-                        <version>${code-house.report.umlhraph.version}</version>
+                        <version>${umlhraph.version}</version>
                     </docletArtifact>
                     <additionalparam>-views</additionalparam>
                     <useStandardDocletOptions>true</useStandardDocletOptions>
@@ -317,7 +341,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
-                <version>${code-house.plugin.jxr.version}</version>
+                <version>${maven-jxr-plugin.version}</version>
                 <configuration>
                     <linkJavadoc>true</linkJavadoc>
                     <!-- Links with modules -->
@@ -329,16 +353,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>${code-house.plugin.pmd.version}</version>
+                <version>${maven-pmd-plugin.version}</version>
                 <configuration>
                     <format>xml</format>
-                    <targetJdk>${code-house.compiler.target}</targetJdk>
+                    <targetJdk>${compiler.target}</targetJdk>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${code-house.plugin.findbugs.version}</version>
+                <version>${maven-findbugs-plugin.version}</version>
                 <configuration>
                     <xmlOutput>true</xmlOutput>
                     <xmlOutputDirectory>target/</xmlOutputDirectory>
@@ -347,7 +371,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>${code-house.report.project-info.version}</version>
+                <version>${project-report-info.version}</version>
             </plugin>
         </plugins>
     </reporting>
@@ -357,43 +381,45 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>${code-house.slf4j.version}</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-nop</artifactId>
-                <version>${code-house.slf4j.version}</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
-                <version>${code-house.slf4j.version}</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
-                <version>${code-house.slf4j.version}</version>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.easymock</groupId>
-                <artifactId>easymock</artifactId>
-                <version>${code-house.easymock.version}</version>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>${code-house.junit.version}</version>
+                <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.easytesting</groupId>
-                <artifactId>fest-assert</artifactId>
-                <version>${code-house.fest.version}</version>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.perf4j</groupId>
                 <artifactId>perf4j</artifactId>
-                <version>${code-house.perf4j.version}</version>
+                <version>${perf4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
